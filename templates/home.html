@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisetas</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #e7e9ee;
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 950px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0px 4px 14px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 14px;
+            background: #fafafa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) td {
+            background: #f0f0f0;
+        }
+
+        tr:hover td {
+            background: #e1e9f7;
+        }
+
+        .btn-editar {
+            padding: 8px 14px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.25s;
+            font-size: 14px;
+        }
+
+        .btn-editar:hover {
+            background: #217dbb;
+        }
+
+        .btn-add {
+            margin-top: 55px;
+            padding: 12px 22px;
+            background: #2ecc71;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: 0.25s;
+        }
+
+        .btn-add:hover {
+            background: #27ae60;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Lista de Camisetas</h1>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Tamanho</th>
+                <th>Cor</th>
+                <th>Modelo</th>
+                <th>Ação</th>
+            </tr>
+
+            {% for camiseta in retornar_camiseta() %}
+            <tr>
+                <td>{{ camiseta[0] }}</td>
+                <td>{{ camiseta[1] }}</td>
+                <td>{{ camiseta[2] }}</td>
+                <td>{{ camiseta[3] }}</td>
+                <td>{{ camiseta[4] }}</td>
+                <td>
+                    <a href="/camiseta-edit/{{ camiseta[0] }}">
+                        <button class="btn-editar">Editar</button>
+                    </a>
+                    <a href="/camiseta-delete/{{ camiseta[0] }}">
+                        <button class="btn-editar">Deletar</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/camiseta-insert" class="btn-add">➕ Adicionar camiseta</a>
+
+    </div>
+
+</body>
+</html>
